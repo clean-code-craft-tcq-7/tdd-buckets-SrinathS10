@@ -1,5 +1,6 @@
 package BucketSample;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -7,6 +8,10 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 public class TestBucketSampleApplication {
+    @Before
+    public void testObjectCreationEnabled() {
+        BucketSampleApplication bucketSampleApplication = new BucketSampleApplication();
+    }
 
     @Test
     public void testReadingsRangeNormal() {
