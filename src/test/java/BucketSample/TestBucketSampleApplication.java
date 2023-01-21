@@ -8,11 +8,6 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 public class TestBucketSampleApplication {
-    @Before
-    public void testObjectCreationEnabled() {
-        BucketSampleApplication bucketSampleApplication = new BucketSampleApplication();
-    }
-
     @Test
     public void testReadingsRangeNormal() {
         Map<String, Integer> result;
