@@ -19,7 +19,7 @@ public class BucketSampleApplication {
     }
 
     private static boolean isAdjacentNumbersValid(int reading1, int reading2) {
-        return reading1 == reading2 || reading1 == reading2-1;
+        return reading1 == reading2 || reading1 == reading2-1 || reading1 == reading2+1;
     }
 
     /*
