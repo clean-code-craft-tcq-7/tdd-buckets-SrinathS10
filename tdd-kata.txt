@@ -1,0 +1,24 @@
+1. Create a Range class with properties to store minimum value, maximum value and reading count.
+2. Create a method signature which accepts integer array as input and return list of Ranges as output.
+    Ex : List<Range> getReadingsRange(int[] readings)
+3. Create a method signature which accepts integer array as input and return List of ranges and readings count in CSV format.
+    Ex : String getReadingsRangeCSV(int[] readings)
+4. Create a basic test for getReadingsRange() function with array input for one range with 2-3 values.
+    Ex : Input - 1,2,3
+5. Add code in method getReadingsRange() to pass the test case.
+6. Create a basic test for getReadingsRangeCSV() function to check the output is in CSV format.
+    Ex : Input - 1,2,3,
+         Output -
+         Range, Readings
+         1-3, 3
+7. Add code in method getReadingsRangeCSV() function to format the output in CSV.
+    getReadingsRangeCSV() depends on getReadingsRange() function
+8. Empty Array:
+    Create test with input as empty array and modify the functions accordingly.
+9. Single Digit Range :
+    Create tests where the range will be in single digit.
+    Ex : [2], [4,4,4]
+10. Multiple Ranges:
+    Create tests where the input array contains multiple ranges and check the functions.
+    Create data-driven test where input and output are checked with a file.
+    Ex : [1,2,9,6,8,7,5,20,19,18], [15,14,14,15,14,10,12,10,12,12,12]
