@@ -20,5 +20,5 @@
     Ex : [2], [4,4,4]
 10. Multiple Ranges:
     Create tests where the input array contains multiple ranges and check the functions.
-    Create data-driven test where input and output are checked with a file.
+    Create data-driven test where input and output are checked with same procedure.
     Ex : [1,2,9,6,8,7,5,20,19,18], [15,14,14,15,14,10,12,10,12,12,12]
