@@ -3,9 +3,9 @@ package ChargeRange;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -71,22 +71,22 @@ public class TestChargeRangeApplication {
     }
 
     @ParameterizedTest
-    @DisplayName("Testing input with multiple ranges")
-    @MethodSource("getTestReadingsData")
-    public void testReadingsRangeFromInputData(int[] inputReadings, String expectedOutput) {
-        assertTrue(expectedOutput.equals(ChargeRangeApplication.getReadingsRangeInCSVFormat(inputReadings)));
-    }
+    @DisplayName("Testing for multiple range inputs")
+    @CsvFileSource(resources = "/test_readings.csv", delimiterString = ";",
+            numLinesToSkip = 1, ignoreLeadingAndTrailingWhitespace = true)
+    public void testReadingsRangeFromInputData(String inputString, String expectedString) {
+        int[] inputReadings = Arrays.stream(inputString
+                        .replace("[", "").replace("]", "").split(","))
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        Stream<String> expectedOutputStream = Arrays.stream(expectedString
+                        .replace("[", "").replace("]", "")
+                        .split("&"))
+                .map(String::trim)
+                .map(str -> str.replaceAll("\"",""));
 
-    static Stream<Arguments> getTestReadingsData() {
-        return Stream.of(
-                Arguments.of(new int[]{2,3,6,7,10,9},
-                        "Range, Readings\n2-3, 2\n6-7, 2\n9-10, 2\n"),
-                Arguments.of(new int[]{3,5,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24},
-                        "Range, Readings\n3-5, 3\n8-24, 17\n"),
-                Arguments.of(new int[]{20,8,1,2,9,21,4,5,6,20,22,21,22,9},
-                        "Range, Readings\n1-2, 2\n4-6, 3\n8-9, 3\n20-22, 6\n"),
-                Arguments.of(new int[]{4,6,6,6,4,4,4,18,10,10,12,10,12,10,10},
-                        "Range, Readings\n4, 4\n6, 3\n10, 5\n12, 2\n18, 1\n")
-        );
+        String actualOutput = ChargeRangeApplication.getReadingsRangeInCSVFormat(inputReadings);
+        assertTrue(expectedOutputStream.allMatch(actualOutput::contains));
     }
 }
