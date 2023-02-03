@@ -7,7 +7,7 @@ import java.util.List;
 public class ChargeRangeApplication {
 
     private static boolean isAdjacentNumbersInSameRange(int reading1, int reading2) {
-        return reading1 == reading2 || reading1 == reading2-1 || reading1 == reading2+1;
+        return reading1 == reading2 || reading1 == reading2-1;
     }
 
     /*
