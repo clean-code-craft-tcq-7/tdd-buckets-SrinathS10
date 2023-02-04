@@ -1,0 +1,46 @@
+1. Create a Range class with properties to store minimum value, maximum value and reading count.
+2. Create a method signature which accepts integer array as input and return list of Ranges as output.
+    Ex : List<Range> getReadingsRange(int[] readings)
+3. Create a method signature which accepts integer array as input and return List of ranges and readings count in CSV format.
+    Ex : String getReadingsRangeCSV(int[] readings)
+4. Create a basic test for getReadingsRange() function with array input for one range with 2-3 values.
+    Ex : Input - 1,2,3
+5. Add code in method getReadingsRange() to pass the test case.
+6. Create a basic test for getReadingsRangeCSV() function to check the output is in CSV format.
+    Ex : Input - 1,2,3,
+         Output -
+         Range, Readings
+         1-3, 3
+7. Add code in method getReadingsRangeCSV() function to format the output in CSV.
+    getReadingsRangeCSV() depends on getReadingsRange() function
+8. Empty Array:
+    Create test with input as empty array and modify the functions accordingly.
+9. Single Digit Range :
+    Create tests where the range will be in single digit.
+    Ex : [2], [4,4,4]
+10. Multiple Ranges:
+    Create tests where the input array contains multiple ranges and check the functions.
+    Create data-driven test where input and output are checked with same procedure.
+    Ex : [1,2,9,6,8,7,5,20,19,18], [15,14,14,15,14,10,12,10,12,12,12]
+
+
+Test-driven extensions
+1. Current-sensing at high fidelity
+   1.1 Create class for Analog to Digital conversion (A2D) as below
+       Class : A2D Converter
+       Attributes : maxBits, maxTemperature
+       Methods : removeErrorReadings(), convertAnalogValue(), convertAnalogReadings()
+   1.2 Write test case for ignoring error readings and add implementation in the function to pass
+       Given 12-bit converter, ignore readings above 4094.
+   1.3 Write test cases for A2D conversion function and add implementation
+       Given max current reading 10A, and input 1146, function should return 3. (10*1146/4094 = 2.799)
+   1.4 For integration, write end-to-end test cases, by supplying 12 bit integer inputs and testing with expected ranges
+
+2. One more sensor,
+    2.1 Add an attribute (bool dischargeFlag) to existing A2D class so that negative values are allowed (change existing properties accordingly)
+    2.2 Write test cases for A2D conversion function for testing negative values
+        Given 10-bit converter and max temperature 15A,
+            input 0 should result -15A
+            input 511 should result 0A
+            input 1022 should result 15A
+    2.3 Write end-to-end test cases by supplying 10 bit integer, and negative value ranges also should be added in same bucket range
