@@ -51,4 +51,8 @@ public class ChargeRangeApplication {
         }
         return rangeListString;
     }
+
+    public static String getReadingsRangeInCSVFormat(int[] readings, A2DConverter converter) {
+        return getReadingsRangeInCSVFormat(converter.convertAnalogReadings(readings));
+    }
 }

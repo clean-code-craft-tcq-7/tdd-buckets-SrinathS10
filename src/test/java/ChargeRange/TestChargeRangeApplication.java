@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -75,18 +73,6 @@ public class TestChargeRangeApplication {
     @CsvFileSource(resources = "/test_readings.csv", delimiterString = ";",
             numLinesToSkip = 1, ignoreLeadingAndTrailingWhitespace = true)
     public void testReadingsRangeFromInputData(String inputString, String expectedString) {
-        int[] inputReadings = Arrays.stream(inputString
-                        .replace("[", "").replace("]", "").split(","))
-                .map(String::trim)
-                .mapToInt(Integer::parseInt)
-                .toArray();
-        Stream<String> expectedOutputStream = Arrays.stream(expectedString
-                        .replace("[", "").replace("]", "")
-                        .split("&"))
-                .map(String::trim)
-                .map(str -> str.replaceAll("\"",""));
-
-        String actualOutput = ChargeRangeApplication.getReadingsRangeInCSVFormat(inputReadings);
-        assertTrue(expectedOutputStream.allMatch(actualOutput::contains));
+        TestCSVFileValues.testCSVFileReadings(inputString,expectedString);
     }
 }
